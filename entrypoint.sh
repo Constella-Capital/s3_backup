@@ -14,7 +14,7 @@ export S3_ENDPOINT=${S3_ENDPOINT}
 EOF
 
 echo "creating crontab"
-printf "${CRON_SCHEDULE} su - backup -c /dobackup.sh\n" > /tmp/crontab
+printf "${CRON_SCHEDULE} su - ${BACKUP_USER:-backup} -c /dobackup.sh\n" > /tmp/crontab
 crontab - < /tmp/crontab
 
 echo "starting $@"
